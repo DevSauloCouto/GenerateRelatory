@@ -1,5 +1,6 @@
 package com.course.workfiles.exercise.application;
 
+import com.course.workfiles.exercise.entities.Product;
 import com.course.workfiles.exercise.entities.Relatory;
 import com.course.workfiles.exercise.service.ReaderService;
 import com.course.workfiles.exercise.service.RelatoryService;
@@ -20,14 +21,12 @@ public class Program {
         ReaderService readerService = new ReaderService();
 
         try {
-            List<List<String>> datas = readerService.readFile(file);
+            List<Product> products = readerService.readFile(file);
 
             List<Relatory> relatories = new ArrayList<>();
 
-            for (int i = 0; i < datas.size(); i++) {
-                Double total = Double.parseDouble(datas.get(i).get(1)) * Double.parseDouble(datas.get(i).get(2));
-
-                relatories.add(new Relatory(datas.get(i).get(0), total));
+            for (int i = 0; i < products.size(); i++) {
+                relatories.add(new Relatory(products.get(i).getName(), products.get(i).getPrice() * products.get(i).getQuantity()));
             }
 
             RelatoryService relatoryService = new RelatoryService();
