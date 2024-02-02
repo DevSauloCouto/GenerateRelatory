@@ -8,7 +8,13 @@ import java.util.List;
 
 public class ReaderService {
 
-    public List<Product> readFile(File file) throws IOException {
+    private File file;
+
+    public ReaderService(String fileName) {
+        this.file = new File(fileName);
+    }
+
+    public List<Product> readFile() throws IOException {
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             List<Product> products = new ArrayList<>();
