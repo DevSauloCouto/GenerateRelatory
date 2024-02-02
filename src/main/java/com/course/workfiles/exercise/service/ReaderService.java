@@ -2,21 +2,19 @@ package com.course.workfiles.exercise.service;
 
 import com.course.workfiles.exercise.entities.Product;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ReaderService {
 
     public List<Product> readFile(File file) throws IOException {
 
-        try (Scanner sc = new Scanner(file)) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             List<Product> products = new ArrayList<>();
 
-            while (sc.hasNextLine()) {
-                String[] line = sc.nextLine().split(",");
+            while (bufferedReader.ready()) {
+                String[] line = bufferedReader.readLine().split(",");
                 products.add(new Product(line[0], Double.parseDouble(line[1]), Double.parseDouble(line[2])));
             }
 
