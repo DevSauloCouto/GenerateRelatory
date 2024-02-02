@@ -23,13 +23,9 @@ public class Program {
         try {
             List<Product> products = readerService.readFile(file);
 
-            List<Relatory> relatories = new ArrayList<>();
-
-            for (int i = 0; i < products.size(); i++) {
-                relatories.add(new Relatory(products.get(i).getName(), products.get(i).getPrice() * products.get(i).getQuantity()));
-            }
-
             RelatoryService relatoryService = new RelatoryService();
+
+            List<Relatory> relatories = relatoryService.listRelatories(products);
 
             relatoryService.generateRelatory(relatories);
         }
