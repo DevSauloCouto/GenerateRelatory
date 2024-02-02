@@ -14,14 +14,10 @@ public class Program {
 
     public static void main(String[] args) {
 
-        String fileName = "C:\\Users\\55799\\Desktop\\Relatorio\\data.csv";
-
-        File file = new File(fileName);
-
-        ReaderService readerService = new ReaderService();
+        ReaderService readerService = new ReaderService("C:\\Users\\55799\\Desktop\\Relatorio\\data.csv");
 
         try {
-            List<Product> products = readerService.readFile(file);
+            List<Product> products = readerService.readFile();
 
             RelatoryService relatoryService = new RelatoryService();
 
